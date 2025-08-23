@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodada de Libertad - Inscripciones MTB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .event-info {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-top: -50px;
+            position: relative;
+        }
+        .bank-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .form-section {
+            padding: 40px 0;
+        }
+        .footer {
+            background-color: #212529;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">RODADA DE LIBERTAD</h1>
+            <p class="lead">Ruta de MTB de Montaña - 31 de Agosto 2025</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Event Info -->
+        <div class="event-info">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Información del Evento</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Lugar de inicio:</strong> Finca la Fuente</li>
+                        <li class="list-group-item"><strong>Fecha:</strong> 31 de Agosto 2025</li>
+                        <li class="list-group-item"><strong>Hora de inicio:</strong> 7:30 AM</li>
+                        <li class="list-group-item"><strong>Distancia:</strong> 15 km</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Incluye</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Hidratación</li>
+                        <li class="list-group-item">Medalla conmemorativa</li>
+                        <li class="list-group-item">Pulsera identificadora</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bank-info">
+                <h4>Información de Pago</h4>
+                <p><strong>Costo de inscripción:</strong> $350 MXN</p>
+                <p><strong>Cuenta bancaria:</strong> 7229 6901 4930 3654 40</p>
+                <p>Una vez realizado el pago, complete el formulario de inscripción.</p>
+            </div>
+
+            <div class="countdown" id="countdown">
+                Faltan <span id="days"></span> días, <span id="hours"></span> horas, <span id="minutes"></span> minutos y <span id="seconds"></span> segundos para el evento
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-section">
+            <h2 class="text-center mb-4">Formulario de Inscripción</h2>
+            <form id="registrationForm" class="row g-3">
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">Nombres *</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName" class="form-label">Apellidos *</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Correo Electrónico *</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Teléfono *</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="age" class="form-label">Edad *</label>
+                    <input type="number" class="form-control" id="age" min="12" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="emergencyContact" class="form-label">Contacto de Emergencia (Nombre y Teléfono) *</label>
+                    <input type="text" class="form-control" id="emergencyContact" required>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="paymentConfirmation" required>
+                        <label class="form-check-label" for="paymentConfirmation">
+                            Confirmo que he realizado el pago a la cuenta bancaria indicada
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terms" required>
+                        <label class="form-check-label" for="terms">
+                            Acepto los términos y condiciones del evento
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Enviar Inscripción</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container text-center">
+            <p>Para más información, contacta a: <a href="mailto:inscripciones.rodada@gmail.com" class="text-white">inscripciones.rodada@gmail.com</a></p>
+            <p>© 2025 Rodada de Libertad - Todos los derechos reservados</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¡Inscripción Exitosa!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tu inscripción ha sido registrada correctamente. Se ha enviado un correo de confirmación a la dirección proporcionada.</p>
+                    <p>Número de inscripción: <strong id="registrationNumber"></strong></p>
+                    <p>Te esperamos el 31 de Agosto en Finca la Fuente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown to event
+        function updateCountdown() {
+            const eventDate = new Date('August 31, 2025 07:30:00');
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, this would connect to a backend service
+            // that would save to Excel/Google Sheets and send the email
+            
+            // Generate random registration number
+            const regNumber = 'RL' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('registrationNumber').innerText = regNumber;
+            
+            // Show success modal
+            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            
+            // In a real implementation, here you would:
+            // 1. Send data to server to store in Excel/Google Sheets
+            // 2. Send confirmation email to inscripciones.rodada@gmail.com and the participant
+        });
+    </script>
+</body>
+</html>
