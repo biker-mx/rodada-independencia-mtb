@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodada de Libertad - Inscripciones MTB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c6e49;
+            --secondary-color: #fca311;
+            --dark-color: #14213d;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549476464-37392f717541?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .event-info {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-top: -50px;
+            position: relative;
+        }
+        
+        .bank-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .form-section {
+            padding: 40px 0;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #24593d;
+            border-color: #24593d;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .alert-netlify {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">RODADA DE LIBERTAD</h1>
+            <p class="lead">Ruta de MTB de Montaña - 31 de Agosto 2025</p>
+            <a href="#inscripcion" class="btn btn-warning btn-lg mt-3">¡Inscríbete Ahora!</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Event Info -->
+        <div class="event-info">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="section-title">Información del Evento</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Lugar de inicio:</strong> Finca la Fuente</li>
+                        <li><i class="fas fa-calendar-alt"></i> <strong>Fecha:</strong> 31 de Agosto 2025</li>
+                        <li><i class="fas fa-clock"></i> <strong>Hora de inicio:</strong> 7:30 AM</li>
+                        <li><i class="fas fa-road"></i> <strong>Distancia:</strong> 15 km</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="section-title">Incluye</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-tint"></i> Hidratación</li>
+                        <li><i class="fas fa-medal"></i> Medalla conmemorativa</li>
+                        <li><i class="fas fa-barcode"></i> Pulsera identificadora</li>
+                        <li><i class="fas fa-tshirt"></i> Camiseta del evento (opcional)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bank-info">
+                <h4><i class="fas fa-money-bill-wave"></i> Información de Pago</h4>
+                <p><strong>Costo de inscripción:</strong> $350 MXN</p>
+                <p><strong>Cuenta bancaria:</strong> 7229 6901 4930 3654 40</p>
+                <p><strong>Beneficiario:</strong> Rodada de Libertad MTB</p>
+                <p class="mt-3">Una vez realizado el pago, complete el formulario de inscripción con el número de comprobante.</p>
+            </div>
+
+            <div class="countdown" id="countdown">
+                <i class="fas fa-hourglass-half"></i> Faltan <span id="days"></span> días, <span id="hours"></span> horas, <span id="minutes"></span> minutos y <span id="seconds"></span> segundos para el evento
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="inscripcion" class="form-section">
+            <h2 class="text-center mb-4 section-title">Formulario de Inscripción</h2>
+            
+            <!-- Netlify confirmation alert -->
+            <div class="alert alert-success alert-netlify" id="alertNetlify" role="alert">
+                <i class="fas fa-check-circle me-2"></i>¡Inscripción enviada con éxito! Te contactaremos pronto.
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4 class="my-2">Completa tus datos</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Netlify Form -->
+                            <form name="inscripcion-rodada" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="row g-3 p-3">
+                                <input type="hidden" name="form-name" value="inscripcion-rodada">
+                                <p class="d-none">
+                                    <label>No llenar este campo: <input name="bot-field"></label>
+                                </p>
+                                
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">Nombres *</label>
+                                    <input type="text" class="form-control" id="firstName" name="nombres" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Apellidos *</label>
+                                    <input type="text" class="form-control" id="lastName" name="apellidos" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Correo Electrónico *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Teléfono *</label>
+                                    <input type="tel" class="form-control" id="phone" name="telefono" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="age" class="form-label">Edad *</label>
+                                    <input type="number" class="form-control" id="age" name="edad" min="12" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tshirtSize" class="form-label">Talla de Camiseta (opcional)</label>
+                                    <select class="form-select" id="tshirtSize" name="talla_camiseta">
+                                        <option value="">Selecciona una talla</option>
+                                        <option value="XS">XS</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="XL">XL</option>
+                                        <option value="XXL">XXL</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="emergencyContact" class="form-label">Contacto de Emergencia (Nombre y Teléfono) *</label>
+                                    <input type="text" class="form-control" id="emergencyContact" name="contacto_emergencia" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="paymentProof" class="form-label">Número de Comprobante de Pago *</label>
+                                    <input type="text" class="form-control" id="paymentProof" name="comprobante_pago" required>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="paymentConfirmation" name="confirmacion_pago" required>
+                                        <label class="form-check-label" for="paymentConfirmation">
+                                            Confirmo que he realizado el pago a la cuenta bancaria indicada
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms" name="terminos_condiciones" required>
+                                        <label class="form-check-label" for="terms">
+                                            Acepto los términos y condiciones del evento
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Inscripción
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contacto</h5>
+                    <p><i class="fas fa-envelope me-2"></i> <a href="mailto:inscripciones.rodada@gmail.com" class="text-white">inscripciones.rodada@gmail.com</a></p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Síguenos en redes sociales</h5>
+                    <div class="social-links mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <p>© 2025 Rodada de Libertad - Todos los derechos reservados</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown to event
+        function updateCountdown() {
+            const eventDate = new Date('August 31, 2025 07:30:00');
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Netlify Form Handling
+        const form = document.querySelector('form[data-netlify="true"]');
+        if (form) {
+            form.addEventListener('submit', function() {
+                // Show success message
+                document.getElementById('alertNetlify').style.display = 'block';
+                
+                // Scroll to alert
+                document.getElementById('alertNetlify').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html>
