@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodada de la Independencia MTB - San Miguel de Allende</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --accent: #f39c12;
+            --light: #f5f5f5;
+            --dark: #333;
+            --success: #27ae60;
+            --danger: #e74c3c;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo i {
+            font-size: 40px;
+            color: var(--primary);
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: var(--dark);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            background-color: #f0f8ff;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .info-item i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-item p {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+        
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .payment-info {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .payment-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bank-account {
+            background-color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 16px;
+            text-align: center;
+            border: 1px dashed var(--primary);
+            word-break: break-all;
+        }
+        
+        .benefits {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .benefit-item div {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 8px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .benefit-item p {
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .confirmation {
+            display: none;
+            background-color: var(--success);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+        
+        .email-btn {
+            display: block;
+            background-color: #d44638;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .instructions {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .instructions h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            color: var(--dark);
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .location-info {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--success);
+        }
+        
+        .location-info h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bicycle"></i>
+            </div>
+            <h1>Rodada de la Independencia MTB</h1>
+            <p>15km de aventura - 31 de Agosto 2025 - 7:30 AM</p>
+        </header>
+        
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-info-circle"></i> Información del Evento</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Lugar de salida</p>
+                    <p><strong>Finca la Fuente</strong></p>
+                    <p><small>San Miguel de Allende</small></p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-road"></i>
+                    <p>Distancia</p>
+                    <p><strong>15 Km</strong></p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Fecha</p>
+                    <p><strong>31 Ago 2025</strong></p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Hora</p>
+                    <p><strong>7:30 AM</strong></p>
+                </div>
+            </div>
+            
+            <div class="location-info">
+                <h3><i class="fas fa-map-marked-alt"></i> Ubicación</h3>
+                <p>La ubicación exacta de <strong>Finca la Fuente</strong> en San Miguel de Allende se enviará por correo electrónico después de completar tu inscripción y pago.</p>
+            </div>
+            
+            <h2 class="card-title"><i class="fas fa-edit"></i> Formulario de Inscripción</h2>
+            
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo:</label>
+                    <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono:</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Edad:</label>
+                    <input type="number" id="age" name="age" min="12" required placeholder="18">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Género:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Selecciona...</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="emergencyContact">Contacto de emergencia:</label>
+                    <input type="text" id="emergencyContact" name="emergencyContact" required placeholder="Nombre y teléfono">
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-check-circle"></i> Confirmar Inscripción
+                </button>
+            </form>
+            
+            <div id="confirmation" class="confirmation">
+                <h3><i class="fas fa-check"></i> ¡Inscripción Exitosa!</h3>
+                <p>Tu registro se ha completado correctamente.</p>
+                <p>Revisa tu correo para más información.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-credit-card"></i> Información de Pago</h2>
+            <p>Inscripción: <strong>$350 MXN</strong></p>
+            
+            <div class="payment-info">
+                <h3><i class="fas fa-university"></i> Datos Bancarios</h3>
+                <p>Realiza tu depósito o transferencia a:</p>
+                
+                <div class="bank-account">
+                    7229 6901 4930 3654 40
+                </div>
+                
+                <p>Envía tu comprobante a:</p>
+                <p><strong>inscripciones.rodada@gmail.com</strong></p>
+                
+                <a href="mailto:inscripciones.rodada@gmail.com?subject=Comprobante de pago - Rodada de la Independencia" class="email-btn">
+                    <i class="fas fa-envelope"></i> Enviar comprobante por correo
+                </a>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-list-ol"></i> Instrucciones de inscripción</h3>
+                <ol>
+                    <li>Completa el formulario de inscripción</li>
+                    <li>Realiza el pago de $350 MXN a la cuenta bancaria</li>
+                    <li>Envía tu comprobante de pago al correo electrónico</li>
+                    <li>Recibirás un correo de confirmación en 24-48 horas</li>
+                    <li>La ubicación exacta se enviará por correo después del pago</li>
+                </ol>
+            </div>
+            
+            <h3 class="card-title"><i class="fas fa-gift"></i> Beneficios incluidos</h3>
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div><i class="fas fa-tint"></i></div>
+                    <p>Hidratación</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div><i class="fas fa-band-aid"></i></div>
+                    <p>Pulsera de identificación</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div><i class="fas fa-medal"></i></div>
+                    <p>Medalla conmemorativa</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Rodada de la Independencia MTB - San Miguel de Allende</p>
+            <p>Para verificación de inscripción: inscripciones.rodada@gmail.com</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener los valores del formulario
+            const formData = {
+                nombre: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('phone').value,
+                edad: document.getElementById('age').value,
+                genero: document.getElementById('gender').value,
+                contacto_emergencia: document.getElementById('emergencyContact').value,
+                fecha_inscripcion: new Date().toLocaleString(),
+                evento: 'Rodada de la Independencia MTB',
+                distancia: '15km',
+                fecha_evento: '31 de Agosto 2025',
+                hora: '7:30 AM',
+                lugar: 'Finca la Fuente, San Miguel de Allende',
+                costo: '$350 MXN'
+            };
+            
+            // Guardar en Excel
+            saveToExcel(formData);
+            
+            // Mostrar confirmación
+            document.getElementById('confirmation').style.display = 'block';
+            
+            // Desplazarse a la confirmación
+            document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth' });
+            
+            // Reiniciar formulario después de 5 segundos
+            setTimeout(function() {
+                document.getElementById('registrationForm').reset();
+                document.getElementById('confirmation').style.display = 'none';
+            }, 5000);
+        });
+        
+        function saveToExcel(data) {
+            // Crear un libro de trabajo
+            const wb = XLSX.utils.book_new();
+            
+            // Intentar cargar datos existentes
+            let existingData = [];
+            const storedData = localStorage.getItem('inscripcionesRodada');
+            
+            if (storedData) {
+                existingData = JSON.parse(storedData);
+            }
+            
+            // Agregar nuevos datos
+            existingData.push(data);
+            
+            // Guardar en localStorage
+            localStorage.setItem('inscripcionesRodada', JSON.stringify(existingData));
+            
+            // Convertir a hoja de cálculo
+            const ws = XLSX.utils.json_to_sheet(existingData);
+            
+            // Agregar hoja al libro
+            XLSX.utils.book_append_sheet(wb, ws, "Inscripciones Rodada");
+            
+            // Guardar archivo Excel
+            XLSX.writeFile(wb, "inscripciones_rodada_independencia.xlsx");
+        }
+        
+        // Mejorar la experiencia móvil
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.style.backgroundColor = '#fff';
+                this.style.boxShadow = '0 0 0 3px rgba(46, 134, 222, 0.3)';
+            });
+            
+            element.addEventListener('blur', function() {
+                this.style.backgroundColor = '#f9f9f9';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
